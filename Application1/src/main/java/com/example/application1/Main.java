@@ -8,14 +8,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Acceptable naming convention for view and controller are CamelCase and kebab-case.
+ * Examples:
+ *  LoreumIpsumView.fxml and LoreumIpsumViewController.java
+ *  loreum-ipsum-view.fxml and loreum-ipsum-view-controller.java
+ */
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("jsg-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("JSGView.fxml"));
         Scene scene = new Scene(root);
 
         // Alternative ways:
-        // FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("jsg-view.fxml"));
+        // FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("JSGView.fxml"));
         // Parent root = fxmlLoader.load();
         // Scene scene = new Scene(root, w, h) // window opens with dimensions h * w and is adjustable.
         stage.setTitle("Hello World!");

@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'jsg-view.fxml' Controller Class
+ * Sample Skeleton for 'JSGView.fxml' Controller Class
  */
 
 package com.example.application1;
@@ -10,7 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class JSGController {
+public class JSGViewController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -34,7 +34,7 @@ public class JSGController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert helloWorldText != null : "fx:id=\"helloWorldText\" was not injected: check your FXML file 'jsg-view.fxml'.";
+        assert helloWorldText != null : "fx:id=\"helloWorldText\" was not injected: check your FXML file 'JSGView.fxml'.";
     }
 
 }
