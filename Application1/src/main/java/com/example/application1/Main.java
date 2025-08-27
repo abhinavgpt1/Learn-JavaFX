@@ -13,6 +13,10 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("jsg-view.fxml"));
         Scene scene = new Scene(root);
+
+        // Alternative ways:
+        // FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("jsg-view.fxml"));
+        // Parent root = fxmlLoader.load();
         // Scene scene = new Scene(root, w, h) // window opens with dimensions h * w and is adjustable.
         stage.setTitle("Hello World!");
         stage.setScene(scene);
