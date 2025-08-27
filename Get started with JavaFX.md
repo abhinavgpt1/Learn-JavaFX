@@ -1,16 +1,16 @@
-Get started with JavaFX
+Get Started with JavaFX
 -----------------------
-(optional) 1. install latest java version
+(optional) 1. install latest java version.
 
-(optional) 2. install latest scene builder
+(optional) 2. install latest scene builder.
 
 NOTE: Javafx came with Java 8, but now you need to follow https://openjfx.io/openjfx-docs/#install-java
 
 I'll follow non-modular manual way for now in IntelliJ
-1. Install JavaFX SDK 24 and Java 24
-2. Create JavaFX Project in IntelliJ
-3. Set SDK to Java 24. Also, keep a check of language level >= 18
-4. Under File > Project Structure > Libraries, add the JavaFX SDK
+1. Install JavaFX SDK 24 and Java 24.
+2. Create JavaFX Project in IntelliJ.
+3. Set SDK to Java 24. Also, keep a check of language level >= 18.
+4. Under File > Project Structure > Libraries, add the JavaFX SDK.
 5. (IMP) While running the Application, provide VM Options.
 ```
 --module-path "C:\Users\username\Downloads\javafx-sdk-24.0.2\lib" --add-modules javafx.controls,javafx.fxml
@@ -32,4 +32,8 @@ Some warnings may come due to Java and JavaFX latest versions, you supress them 
 --module-path "C:\Users\username\Downloads\javafx-sdk-24.0.2\lib" --add-modules javafx.controls,javafx.fxml --enable-native-access=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow --enable-native-access=javafx.graphics
 ```
 
-Tip: Comment file module-info.java since it requires JDK 9+ (somehow this didn't get recognized even with Java 24)
+Tip: 
+* comment file module-info.java for non-modular project.
+  * https://openjfx.io/openjfx-docs/#next-steps:~:text=For%20a%20non%2Dmodular%20project%2C%20you%20can%20remove%20the%20module%2Dinfo.java%20file.
+* You can set your installed version of scene builder to view FXML in IntelliJ.
+  * https://www.jetbrains.com/help/idea/opening-fxml-files-in-javafx-scene-builder.html#open_files_in_scene_builder_app
