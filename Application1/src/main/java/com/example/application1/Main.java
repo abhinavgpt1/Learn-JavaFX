@@ -12,7 +12,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("jsg-view.fxml"));
-        Scene scene = new Scene(root); // new Scene(root, h, w) would override dimensions
+        Scene scene = new Scene(root);
+        // Scene scene = new Scene(root, w, h) // window opens with dimensions h * w and is adjustable.
         stage.setTitle("Hello World!");
         stage.setScene(scene);
         stage.show();
