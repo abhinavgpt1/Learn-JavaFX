@@ -56,6 +56,9 @@ public class ElectricityBillViewController {
     private MutableBoolean isUnitExemptionValid;
     private MutableBoolean isDiscountValid;
 
+    // pre-load images for performance
+    private final Image TICK = new Image(getClass().getResourceAsStream("tick.png"));
+    private final Image CROSS = new Image(getClass().getResourceAsStream("cross.png"));
     private final String MISSING_VALUE = "Please enter a number for %s";
     private final float RATE_PER_KWH = 10;
     void validationAlert(String context){
@@ -97,16 +100,18 @@ public class ElectricityBillViewController {
     void doClear(ActionEvent event) {
         txtPrevReading.setText("");
         txtCurrentReading.setText("");
+
         txtUnitExemptionLimit.setText("0");
+        imgUnitExemptionValidation.setImage(null);
+
         txtDiscount.setText("0");
+        imgDiscountValidation.setImage(null);
+
         txtTotal.setText("");
         txtNetBill.setText("");
 
         // flags get set automatically to true/false because of listener.
-        System.out.println(isPrevReadingValid.get() + ":" +
-                isCurrentReadingValid.get() + ":" +
-                isUnitExemptionValid.get() + ":" +
-                isDiscountValid.get());
+        // System.out.println(isPrevReadingValid.get() + ":" + isCurrentReadingValid.get() + ":" + isUnitExemptionValid.get() + ":" + isDiscountValid.get());
     }
 
     @FXML
@@ -151,7 +156,7 @@ public class ElectricityBillViewController {
     private void validateReadingAndShowIcon(String value, ImageView img, MutableBoolean flag) {
         try {
             Float.parseFloat(value); // Not Integer.parseInt()
-            img.setImage(new Image(getClass().getResourceAsStream("tick.png")));
+            img.setImage(TICK);
             flag.set(true);
         } catch(NumberFormatException n){
             // System.out.println(value);
@@ -159,7 +164,7 @@ public class ElectricityBillViewController {
             if (value == null || value.isEmpty())
                 img.setImage(null);
             else
-                img.setImage(new Image(getClass().getResourceAsStream("cross.png")));
+                img.setImage(CROSS);
         }
     }
 }
