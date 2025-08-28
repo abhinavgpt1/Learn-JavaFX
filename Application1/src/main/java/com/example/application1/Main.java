@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * Acceptable naming convention for view and controller are CamelCase and kebab-case.
- * Examples:
+ * For example:
  *  LoreumIpsumView.fxml and LoreumIpsumViewController.java
  *  loreum-ipsum-view.fxml and loreum-ipsum-view-controller.java
  */
