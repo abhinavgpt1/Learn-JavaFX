@@ -77,7 +77,7 @@ public class ListViewController {
 
     @FXML
     void doSumLstSelected(ActionEvent event) {
-        Optional<Integer> sumOpt = lstSelected.getItems().stream().reduce((i1, i2) -> i1 + i2);
+        Optional<Integer> sumOpt = lstSelected.getItems().stream().reduce(Integer::sum); // = reduce((i1, i2) -> i1 + i2);
         lblSum.setText(sumOpt.map(String::valueOf).orElse("")); // or simply use if-else with sumOpt.isPresent()
     }
 
