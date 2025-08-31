@@ -108,6 +108,6 @@ public class FoodMenuController {
         assert txtPostBillingMessage != null : "fx:id=\"txtPostBillingMessage\" was not injected: check your FXML file 'FoodMenuView.fxml'.";
 
         // app init
-        txtPostBillingMessage.setDisable(true);
+        txtPostBillingMessage.setEditable(false); // redundant here since it's set in fxml. But it's imp to know Disable != Editable.
     }
 }
