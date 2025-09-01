@@ -99,6 +99,24 @@ public class ShopItemsController {
             return;
         }
         double total = lstSelectedItemsPrice.getItems().stream().mapToDouble(Double::doubleValue).sum();
+        double discountPercentage = 0;
+        if(toggleDiscount.getSelectedToggle() != null) { // i.e. if atleast one is selected
+            if (rad10.isSelected()) {
+                discountPercentage = 10;
+            } else if (rad20.isSelected()) {
+                discountPercentage = 20;
+            } else {
+                try {
+                    discountPercentage = Double.parseDouble(txtCustomDiscount.getText()); //use regex, otherwise inputs like 10f == 10% discount
+                } catch (NumberFormatException ex) {
+                    System.out.println("ERROR: Invalid discount input: " + txtCustomDiscount.getText());
+                    showAlert("Invalid Discount", "Enter valid number to get discount", Alert.AlertType.ERROR);
+                    lblBill.setText("");
+                    return;
+                }
+            }
+        }
+        total -= total*discountPercentage/100;
         lblBill.setText("Rs. " + String.format("%.2f", total));
     }
 
@@ -107,6 +125,13 @@ public class ShopItemsController {
         lstSelectedItems.getItems().clear();
         lstSelectedItemsPrice.getItems().clear();
         lblBill.setText("");
+    }
+
+    @FXML
+    void doEnableCustomDiscountTxt(ActionEvent event) {
+        // alternative way to requestFocus on radioSelection is to put eventListener on radCustomDiscount
+        txtCustomDiscount.setDisable(false);
+        txtCustomDiscount.requestFocus();
     }
 
     @FXML

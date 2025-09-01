@@ -26,7 +26,7 @@
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="rad20" layoutX="112.0" layoutY="275.0" mnemonicParsing="false" text="20" toggleGroup="$toggleDiscount" />
-      <RadioButton fx:id="radCustomDiscount" layoutX="154.0" layoutY="275.0" mnemonicParsing="false" toggleGroup="$toggleDiscount" />
+      <RadioButton fx:id="radCustomDiscount" layoutX="154.0" layoutY="275.0" mnemonicParsing="false" onAction="#doEnableCustomDiscountTxt" toggleGroup="$toggleDiscount" />
       <TextField fx:id="txtCustomDiscount" disable="true" layoutX="175.0" layoutY="271.0" prefHeight="25.0" prefWidth="35.0" />
       <Label layoutX="215.0" layoutY="275.0" text="\%" />
       <Button layoutX="393.0" layoutY="219.0" mnemonicParsing="false" onAction="#doDeleteSelectedItem" text="Delete" />
