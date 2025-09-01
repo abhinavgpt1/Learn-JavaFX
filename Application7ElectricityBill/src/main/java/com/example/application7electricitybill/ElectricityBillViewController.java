@@ -87,6 +87,10 @@ public class ElectricityBillViewController {
         }
         // Do NOT use Integer.parseInt()
         float unitsConsumed = Float.parseFloat(txtCurrentReading.getText()) - Float.parseFloat(txtPrevReading.getText());
+        if (unitsConsumed < 0) {
+            validationAlert("Current reading can't be less than prev. reading. \nEnter valid readings.");
+            return;
+        }
         float unitsExemptionLimit = Float.parseFloat(txtUnitExemptionLimit.getText());
         if (unitsConsumed <= unitsExemptionLimit)
             unitsConsumed = 0;
