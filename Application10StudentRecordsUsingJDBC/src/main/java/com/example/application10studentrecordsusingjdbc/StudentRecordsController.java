@@ -32,7 +32,7 @@ public class StudentRecordsController {
     @FXML // fx:id="txtRollNumber"
     private TextField txtRollNumber; // Value injected by FXMLLoader
 
-    private static Connection connection;
+    private Connection connection;
 
     private static boolean isNumber(String value, Class<? extends Number> numberImpl) { // simply Class numberImpl could have been written only to get raw parameterized warning. Better is to specify what types we're expecting
         try {
@@ -64,7 +64,7 @@ public class StudentRecordsController {
         return true;
     }
     private boolean isValidPercentage(){
-        // Not made compulsory to save percentage as per table schema. But still making compulsory since the query will have to have if-else.
+        // Default percentage = null as per table schema, but I'm still making it compulsory from UI since the query to fetch/update will need if-else check on txtPercentage.
         if(!isNumber(txtPercentage.getText(), Float.class)) {
             showAlert("Invalid percentage", "Please fill a valid percentage excluding %.", Alert.AlertType.ERROR);
             return false;
@@ -80,8 +80,6 @@ public class StudentRecordsController {
 
     @FXML
     void doConsoleAllStudents(ActionEvent event) {
-        if (!isValidRollNumber())
-            return;
         String getAllStudents = "SELECT * from Students";
         try {
             PreparedStatement ps = connection.prepareStatement(getAllStudents);
