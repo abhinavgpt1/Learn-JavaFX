@@ -34,7 +34,7 @@ public class StudentRecordsController {
 
     private static Connection connection;
 
-    private static boolean isNumber(String value, Class numberImpl) {
+    private static boolean isNumber(String value, Class<? extends Number> numberImpl) { // simply Class numberImpl could have been written only to get raw parameterized warning. Better is to specify what types we're expecting
         try {
             if (numberImpl == Integer.class) {
                 Integer.parseInt(value);
@@ -161,6 +161,8 @@ public class StudentRecordsController {
             if (numRows == 0) {
                 showAlert("Student not found", "No student found with roll number: " + rollNumber, Alert.AlertType.INFORMATION);
                 lblResult.setText("Student not found");
+                txtName.setText("");
+                txtPercentage.setText("");
                 return;
             }
         } catch (SQLException e) {
