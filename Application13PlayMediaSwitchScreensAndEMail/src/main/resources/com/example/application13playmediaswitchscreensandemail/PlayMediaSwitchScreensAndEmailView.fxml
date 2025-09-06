@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.media.MediaView?>
+<?import javafx.geometry.Rectangle2D?>
+<AnchorPane prefHeight="347.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application13playmediaswitchscreensandemail.PlayMediaSwitchScreensAndEmailController">
+    <children>
+        <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="38.0" layoutY="30.0" onMouseClicked="#playNotification" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@notificationPng.png" />
+            </image>
+        </ImageView>
+        <Label alignment="CENTER" layoutX="20.0" layoutY="87.0" prefHeight="17.0" prefWidth="87.0" text="Notification" />
+        <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="122.0" layoutY="30.0" onMouseClicked="#playAudioClip" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@audio.png" />
+            </image>
+        </ImageView>
+      <Label alignment="CENTER" layoutX="104.0" layoutY="87.0" prefHeight="17.0" prefWidth="87.0" text="Audio" />
+        <Label alignment="CENTER" layoutX="208.0" layoutY="87.0" prefHeight="17.0" prefWidth="44.0" text="Video" />
+      <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="202.0" layoutY="30.0" onMouseClicked="#playVideoClip" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@video.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="286.0" layoutY="35.0" onMouseClicked="#navigateToEmailPage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@email.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="284.0" layoutY="87.0" prefHeight="17.0" prefWidth="44.0" text="Email" />
+      <MediaView fx:id="mdVideoPlayer" fitHeight="200.0" fitWidth="320.0" layoutX="20.0" layoutY="123.0" preserveRatio="false">
+         <viewport>
+             <Rectangle2D />
+         </viewport>
+      </MediaView>
+    </children>
+</AnchorPane>
