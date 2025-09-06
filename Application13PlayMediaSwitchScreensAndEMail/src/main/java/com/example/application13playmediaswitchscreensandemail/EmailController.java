@@ -4,15 +4,13 @@
 
 package com.example.application13playmediaswitchscreensandemail;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,9 +31,6 @@ public class EmailController {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-
-    @FXML // fx:id="lblAppPassword"
-    private Hyperlink lblAppPassword; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtAppPassword"
     private TextArea txtAppPassword; // Value injected by FXMLLoader
@@ -93,33 +88,29 @@ public class EmailController {
             return;
         }
 
-        CompletableFuture.supplyAsync(() -> {
-            return EmailService.sendMail(fromMailAddress, appPassword, toMailAddress, subject, body);
-        }).thenAccept(errorList -> {
-            Platform.runLater(() -> { // needed to show alert on main thread
-                if (errorList.isEmpty()) {
-                    String successfulEmailAlertContext = 
-                        "Email sent successfully\n" +
-                        "from: " + txtFromMailAddress.getText() + "\n" +
-                        "to: " + txtToMailAddress.getText();
-                    showAlert("Email Sent", successfulEmailAlertContext, Alert.AlertType.INFORMATION
-                    );
-                } else {
-                    showAlert("Failed to send email", errorList.stream().reduce((s1, s2) -> (s1 + "\n" + s2)).get(), Alert.AlertType.ERROR);
-                }
-            });
-        });
+        CompletableFuture
+                .supplyAsync(() -> EmailService.sendMail(fromMailAddress, appPassword, toMailAddress, subject, body))
+                .thenAccept(errorList -> Platform.runLater(() -> { 
+                    // need to wrap in Platform to show alert (only possible if it's on main thread)
+                    if (errorList.isEmpty()) {
+                        String successfulEmailAlertContext = 
+                            "Email sent successfully\n" +
+                            "from: " + txtFromMailAddress.getText() + "\n" +
+                            "to: " + txtToMailAddress.getText();
+                        showAlert("Email Sent", successfulEmailAlertContext, Alert.AlertType.INFORMATION);
+                    } else {
+                        showAlert("Failed to send email", errorList.stream().reduce((s1, s2) -> (s1 + "\n" + s2)).get(), Alert.AlertType.ERROR);
+                    }
+                }));
     }
 
     @FXML
     void learnAboutAppPassword(MouseEvent event) {
-        URI appPasswordInfoLink = null;
+        URI appPasswordInfoLink;
         try {
             appPasswordInfoLink = new URI("https://support.google.com/accounts/answer/185833?hl=en");
             Desktop.getDesktop().browse(appPasswordInfoLink);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (URISyntaxException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -132,7 +123,6 @@ public class EmailController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert lblAppPassword != null : "fx:id=\"lblAppPassword\" was not injected: check your FXML file 'EmailView.fxml'.";
         assert txtAppPassword != null : "fx:id=\"txtAppPassword\" was not injected: check your FXML file 'EmailView.fxml'.";
         assert txtBody != null : "fx:id=\"txtBody\" was not injected: check your FXML file 'EmailView.fxml'.";
         assert txtFromMailAddress != null : "fx:id=\"txtFromMailAddress\" was not injected: check your FXML file 'EmailView.fxml'.";
